@@ -1,0 +1,10 @@
+@NewsWeb.Api_HostAddress = https://localhost:7014
+
+
+GET {{NewsWeb.Api_HostAddress}}/api/articles
+
+###
+
+GET {{NewsWeb.Api_HostAddress}}/api/articles
+
+###
