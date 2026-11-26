@@ -12,7 +12,7 @@ using NewsWeb.Api.Models;
 namespace NewsWeb.Api.Migrations
 {
     [DbContext(typeof(NewsDbContext))]
-    [Migration("20261120122249_InitCreate")]
+    [Migration("20261126150732_InitCreate")]
     partial class InitCreate
     {
         /// <inheritdoc />
@@ -25,6 +25,21 @@ namespace NewsWeb.Api.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("AppUserArticle", b =>
+                {
+                    b.Property<int>("AppUsersId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ArticlesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AppUsersId", "ArticlesId");
+
+                    b.HasIndex("ArticlesId");
+
+                    b.ToTable("AppUserArticle");
+                });
+
             modelBuilder.Entity("ArticleAction", b =>
                 {
                     b.Property<int>("Id")
@@ -32,6 +47,9 @@ namespace NewsWeb.Api.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AppUserId")
+                        .HasColumnType("int");
 
                     b.Property<int>("ArticleId")
                         .HasColumnType("int");
@@ -46,6 +64,10 @@ namespace NewsWeb.Api.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.HasIndex("ArticleId");
 
                     b.ToTable("ArticleActions");
                 });
@@ -97,6 +119,50 @@ namespace NewsWeb.Api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Articles");
+                });
+
+            modelBuilder.Entity("AppUserArticle", b =>
+                {
+                    b.HasOne("NewsWeb.Api.Models.AppUser", null)
+                        .WithMany()
+                        .HasForeignKey("AppUsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("NewsWeb.Api.Models.Article", null)
+                        .WithMany()
+                        .HasForeignKey("ArticlesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ArticleAction", b =>
+                {
+                    b.HasOne("NewsWeb.Api.Models.AppUser", "AppUser")
+                        .WithMany("ArticleActions")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("NewsWeb.Api.Models.Article", "Article")
+                        .WithMany("ArticleActions")
+                        .HasForeignKey("ArticleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+
+                    b.Navigation("Article");
+                });
+
+            modelBuilder.Entity("NewsWeb.Api.Models.AppUser", b =>
+                {
+                    b.Navigation("ArticleActions");
+                });
+
+            modelBuilder.Entity("NewsWeb.Api.Models.Article", b =>
+                {
+                    b.Navigation("ArticleActions");
                 });
 #pragma warning restore 612, 618
         }

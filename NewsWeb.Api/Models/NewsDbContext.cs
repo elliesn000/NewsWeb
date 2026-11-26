@@ -23,9 +23,9 @@ public class NewsDbContext : DbContext
             {
                 var users = new[]
                 {
-                    AppUser.Create (1, "user1", UserRole.Writer),
-                    AppUser.Create (2, "user2", UserRole.Publisher),
-                    AppUser.Create (3, "user3", UserRole.Admin),
+                    AppUser.Create ("user1", UserRole.Writer),
+                    AppUser.Create ("user2", UserRole.Publisher),
+                    AppUser.Create ("user3", UserRole.Admin),
                 };
                 await context.Set<AppUser>().AddRangeAsync(users, cancellationToken);
                 await context.SaveChangesAsync(cancellationToken);
@@ -35,9 +35,9 @@ public class NewsDbContext : DbContext
             {
                 var articles = new[]
                 {
-                    Article.Create (1, "Article 1", "Content of Article 1", "https://example.com/image1.jpg", DateTime.UtcNow, ArticleStatus.Published),
-                    Article.Create (2, "Article 2", "Content of Article 2", "https://example.com/image2.jpg", DateTime.UtcNow, ArticleStatus.Draft),
-                    Article.Create (3, "Article 3", "Content of Article 3", "https://example.com/image3.jpg", DateTime.UtcNow, ArticleStatus.Deleted),
+                    Article.Create ("Article 1", "Content of Article 1", "https://example.com/image1.jpg"),
+                    Article.Create ("Article 2", "Content of Article 2", "https://example.com/image2.jpg"),
+                    Article.Create ("Article 3", "Content of Article 3", "https://example.com/image3.jpg"),
                 };
                 await context.Set<Article>().AddRangeAsync(articles, cancellationToken);
                 await context.SaveChangesAsync(cancellationToken);
@@ -62,9 +62,9 @@ public class NewsDbContext : DbContext
             {
                 var users = new[]
                 {
-                    AppUser.Create (1, "user1", UserRole.Writer),
-                    AppUser.Create (2, "user2", UserRole.Publisher),
-                    AppUser.Create (3, "user3", UserRole.Admin),
+                    AppUser.Create ("user1", UserRole.Writer),
+                    AppUser.Create ("user2", UserRole.Publisher),
+                    AppUser.Create ("user3", UserRole.Admin),
                 };
                 context.Set<AppUser>().AddRange(users);
                 context.SaveChanges();
@@ -73,9 +73,9 @@ public class NewsDbContext : DbContext
             {
                 var articles = new[]
                 {
-                    Article.Create (1, "Article 1", "Content of Article 1", "https://example.com/image1.jpg", DateTime.UtcNow, ArticleStatus.Published),
-                    Article.Create (2, "Article 2", "Content of Article 2", "https://example.com/image2.jpg", DateTime.UtcNow, ArticleStatus.Draft),
-                    Article.Create (3, "Article 3", "Content of Article 3", "https://example.com/image3.jpg", DateTime.UtcNow, ArticleStatus.Deleted),
+                    Article.Create ("Article 1", "Content of Article 1", "https://example.com/image1.jpg"),
+                    Article.Create ("Article 2", "Content of Article 2", "https://example.com/image2.jpg"),
+                    Article.Create ("Article 3", "Content of Article 3", "https://example.com/image3.jpg"),
                 };
                 context.Set<Article>().AddRange(articles);
                 context.SaveChanges();

@@ -8,3 +8,20 @@ GET {{NewsWeb.Api_HostAddress}}/api/articles
 GET {{NewsWeb.Api_HostAddress}}/api/articles
 
 ###
+
+@id=0
+GET {{NewsWeb.Api_HostAddress}}/api/articles/2
+
+
+###
+
+POST {{NewsWeb.Api_HostAddress}}/api/articles
+Content-Type: application/json
+
+{
+  "title": "Article testpost1",
+  "content": "Content of Article testpost1",
+  "imageUrl": "https://example.com/image2.jpg",
+}
+
+###

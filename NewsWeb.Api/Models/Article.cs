@@ -10,23 +10,16 @@ public class Article
     public List<ArticleAction> ArticleActions { get; } = [];
     public List<AppUser> AppUsers { get; } = [];
 
-    public static Article Create(int id, string title, string? content, string? imageUrl, DateTime createdAt, ArticleStatus status)
+    public static Article Create(string title, string? content, string? imageUrl)
     {
         return new Article
-        {
-            Id = id,
+        {            
             Title = title,
             Content = content,
             ImageUrl = imageUrl,
-            CreatedAt = createdAt,
-            Status = status
         };
     }
 }
-public enum ArticleStatus
-{
-    Draft,
-    Published,
-    Deleted
-}
+public enum ArticleStatus {
+    Draft, Published, Deleted }
 

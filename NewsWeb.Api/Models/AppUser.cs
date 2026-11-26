@@ -7,11 +7,10 @@ public class AppUser
     public List<ArticleAction> ArticleActions { get; } = [];
     public List<Article> Articles { get; } = [];
 
-    public static AppUser Create(int id, string username, UserRole role)
+    public static AppUser Create(string username, UserRole role)
     {
         return new AppUser
-        {
-            Id = id,
+        {            
             Username = username,
             Role = role
         };
